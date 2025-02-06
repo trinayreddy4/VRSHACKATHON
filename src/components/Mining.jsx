@@ -1,19 +1,19 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 const Mining = ({ miningProgress }) => {
   return (
-    <div className="p-5">
-      <h2 className="text-lg font-bold">Mining Progress</h2>
-      <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
-        <motion.div
-          className="bg-blue-500 h-6 rounded-full text-white text-center"
-          initial={{ width: "0%" }}
-          animate={{ width: `${miningProgress}%` }}
-          transition={{ duration: 0.1 }}
-        >
-          {miningProgress}%
-        </motion.div>
+    <div className="bg-white p-4 rounded-lg shadow-md">
+      <h2 className="text-xl font-bold">Mining Progress</h2>
+      <div className="mt-4">
+        <div className="w-full bg-gray-200 rounded-full h-4">
+          <div
+            className="bg-blue-600 h-4 rounded-full"
+            style={{ width: `${miningProgress}%` }}
+          ></div>
+        </div>
+        <div className="mt-2 text-center text-sm">
+          {miningProgress === 100 ? "Block Mined!" : `${miningProgress}%`}
+        </div>
       </div>
     </div>
   );

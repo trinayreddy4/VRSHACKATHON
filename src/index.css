@@ -27,6 +27,30 @@ body {
   color: white;
 }
 
+.arrow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  /* Adjust space between block and arrow */
+  height: 30px;
+  /* Adjust height as needed */
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid #4CAF50;
+  /* Arrow color */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.arrow-container:hover .arrow {
+  opacity: 1;
+}
 .dark {
   background: linear-gradient(45deg, #1a1a2e, #16213e);
   color: white;

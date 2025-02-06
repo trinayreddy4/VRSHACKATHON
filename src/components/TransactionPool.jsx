@@ -3,35 +3,49 @@ import React, { useState } from "react";
 const TransactionPool = ({ transactions, setTransactions }) => {
   const [newTransaction, setNewTransaction] = useState("");
 
-  const addTransaction = () => {
-    if (newTransaction.trim() === ""){
-        alert("The Transaction must have some data");
-        return ;
+  const handleAddTransaction = () => {
+    if (newTransaction.trim() === "") {
+      alert("Please enter a valid transaction.");
+      return;
     }
-    setTransactions([...transactions, newTransaction]);
+
+    setTransactions([...transactions, newTransaction.trim()]);
     setNewTransaction("");
   };
 
   return (
-    <div className="p-5 bg-gray-100 rounded shadow-md">
-      <h2 className="text-lg font-bold">Transaction Pool</h2>
-      <input
-        type="text"
-        placeholder="Enter transaction"
-        value={newTransaction}
-        onChange={(e) => setNewTransaction(e.target.value)}
-        className="border p-2 mr-2"
-      />
-      <button onClick={addTransaction} className="px-4 py-2 bg-green-500 text-white rounded">
-        Add Transaction
-      </button>
-      <ul className="mt-3">
-        {transactions.map((tx, index) => (
-          <li key={index} className="bg-white p-2 rounded mt-2 shadow">
-            {tx}
-          </li>
-        ))}
-      </ul>
+    <div className="bg-white p-4 rounded-lg shadow-md space-y-3">
+      <h2 className="text-xl font-bold">Transaction Pool</h2>
+      <div className="space-y-2">
+        <textarea
+          className="w-full p-2 border rounded-lg"
+          rows="4"
+          value={newTransaction}
+          onChange={(e) => setNewTransaction(e.target.value)}
+          placeholder="Enter new transaction data"
+        ></textarea>
+        <button
+          onClick={handleAddTransaction}
+          className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded-lg"
+        >
+          Add Transaction
+        </button>
+      </div>
+
+      <div className="space-y-2 mt-4">
+        <h3 className="font-bold">Pending Transactions:</h3>
+        <ul>
+          {transactions.length > 0 ? (
+            transactions.map((tx, index) => (
+              <li key={index} className="text-sm p-2 bg-gray-100 rounded-md">
+                {tx}
+              </li>
+            ))
+          ) : (
+            <li>No transactions in the pool</li>
+          )}
+        </ul>
+      </div>
     </div>
   );
 };
