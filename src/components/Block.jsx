@@ -1,14 +1,36 @@
 import React from "react";
+import { motion } from "framer-motion";
 
-const Block = ({ block, onModify }) => {
+const Block = ({ block }) => {
   return (
-    <div className={`p-4 border-2 rounded-lg shadow-lg ${block.isValid ? "bg-green-200" : "bg-red-200"}`}>
-      <p><strong>Block #{block.index}</strong></p>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`p-4 rounded-lg shadow-lg border  ${
+        block.isValid ? "bg-green-300" : "bg-red-300"
+      }`}
+    >
+      <h3 className="font-bold text-wrap">Block #{block.index}</h3>
       <p><strong>Nonce:</strong> {block.nonce}</p>
-      <p><strong>Data:</strong> <input type="text" value={block.data} onChange={(e) => onModify(e, block.index)} /></p>
-      <p><strong>Previous Hash:</strong> {block.previousHash}</p>
-      <p><strong>Hash:</strong> {block.hash}</p>
-    </div>
+      <p><strong>Data:</strong> {block.data}</p>
+      <p
+         className="break-all"
+        style={{
+          wordWrap: "break-word",
+          overflowWrap: "break-word",
+        }}
+      ><strong>Previous Hash:</strong> {block.previousHash}</p>
+      <p
+        className="break-all"
+        style={{
+          wordWrap: "break-word",
+          overflowWrap: "break-word",
+        }}
+      >
+        <strong>Hash:</strong> {block.hash}
+      </p>
+    </motion.div>
   );
 };
 
